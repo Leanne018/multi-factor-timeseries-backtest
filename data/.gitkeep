@@ -1,0 +1,2 @@
+Data folder structure:
+- `data/`: raw stock OHLC csv files (not all large raw data will be pushed to GitHub)
