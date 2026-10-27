@@ -49,3 +49,15 @@ pandas
 numpy
 matplotlib
 scipy
+
+
+| Stage | Content | Estimated Time |
+|-------|---------|----------------|
+| 1 | Data pull, cleaning, save to CSV | 1–2 days |
+| 2 | Implement momentum / value / volatility factor calculation | 3–5 days |
+| 3 | Build monthly rebalance backtest, performance calculation, benchmark comparison | 3–5 days |
+| 4 | Refactor code, write README, plot results, push to GitHub | 1–2 days |
+
+### Notes
+- Primary focus: understand statistical behaviour of these time-varying features
+- After first run: test robustness and consider network-based extensions
