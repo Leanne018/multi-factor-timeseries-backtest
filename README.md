@@ -6,6 +6,17 @@ From a statistical perspective, each asset is treated as a **node** with a daily
 
 This framework is different from simple threshold trading rules. Instead of triggering actions when one single time series crosses a cutoff, we periodically rank all nodes by time-varying features and select a subset for evaluation.
 
+## Methodology Overview
+This repository implements a reproducible empirical pipeline for studying time-varying predictive signals across a collection of asset time series. Each asset can be treated as a node within a network, where individual series may share latent dependence with one another.
+
+The workflow follows a standard empirical research sequence: data acquisition, cleaning and alignment, feature construction, periodic cross-sectional ranking, portfolio formation, and out-of-sample performance evaluation.
+
+Features are computed only from information available at each historical timestamp to avoid forward information leakage. At each rebalancing date, assets are sorted by their feature values, and a subset is selected to form a simple equal-weight portfolio. The portfolio trajectory is tracked over time and compared against a broad market benchmark series.
+
+The evaluation includes standard time-series performance statistics. Special attention is paid to well-known statistical limitations of this type of study: look-ahead bias, survivorship bias, and the risk of overfitting to historical samples. All modelling assumptions are documented for reproducibility.
+
+This implementation is intentionally lightweight and modular. It separates data loading, feature calculation, portfolio simulation, and performance reporting into distinct components. The modular design allows later extensions, including the introduction of estimated dependence structures between the time-series nodes.
+
 ## Workflow
 1. **Data Collection & Cleaning**
    - Source: `yfinance` / `akshare`
@@ -49,15 +60,3 @@ pandas
 numpy
 matplotlib
 scipy
-
-
-| Stage | Content | Estimated Time |
-|-------|---------|----------------|
-| 1 | Data pull, cleaning, save to CSV | 1–2 days |
-| 2 | Implement momentum / value / volatility factor calculation | 3–5 days |
-| 3 | Build monthly rebalance backtest, performance calculation, benchmark comparison | 3–5 days |
-| 4 | Refactor code, write README, plot results, push to GitHub | 1–2 days |
-
-### Notes
-- Primary focus: understand statistical behaviour of these time-varying features
-- After first run: test robustness and consider network-based extensions
